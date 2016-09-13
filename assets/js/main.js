@@ -40,7 +40,7 @@ database.ref().on("child_added", function(childSnapshot) {
 	
 	var studentEntry = $("<div>").addClass("col-md-12");
 	studentEntry.append($("<div>").addClass("col-md-6").text(childSnapshot.val().personName));
-	studentEntry.append($("<div>").addClass("col-md-6").html($('<a>' + childSnapshot.val().linkedInURL + '</a>').attr('href', childSnapshot.val().linkedInURL)));
+	studentEntry.append($("<div>").addClass("col-md-6").html($('<a>' + childSnapshot.val().linkedInURL + '</a>').attr('href', childSnapshot.val().linkedInURL).attr("target", "_blank")));
 
 	$("#students").append($("<div class='row studentrow'>").append(studentEntry));
 
