@@ -1,3 +1,15 @@
 .bold {
     font-weight: bold;
 }
+
+.name {
+    width: 100%;
+}
+
+.url input {
+    width: 90%;
+}
+
+.name[disabled] {
+    border: none;
+}
