@@ -52,7 +52,11 @@ database.ref().on("child_added", function (childSnapshot) {
     var $nameDiv = $("<div>").addClass("col-md-4");
     var $name = $("<input>").val(childSnapshot.val().personName).addClass('name').attr('disabled', true).attr('id', childSnapshot.key);
     $name.appendTo($nameDiv);
-    var $url = $("<div>").addClass("col-md-6 url").html($('<a>' + childSnapshot.val().linkedInURL + '</a>').attr('href', childSnapshot.val().linkedInURL));
+    var $url = $("<div>").addClass("col-md-6 url").html(
+        $('<a>' + childSnapshot.val().linkedInURL + '</a>')
+        .attr('href', childSnapshot.val().linkedInURL)
+        .attr('target', '_blank')
+    );
     var $edit = $("<div>").addClass("col-md-2").html($("<i>").addClass("fa btn fa-pencil").attr('aria-hidden', true).attr('data-id', childSnapshot.key));
 
     $nameDiv.appendTo($entry);
@@ -89,7 +93,9 @@ function save() {
     var newURL = $(this).closest('.studentrow').children('.url').children('input').val().trim();
 
 
-    $(this).closest('.studentrow').children('.url').html($('<a>').text(newURL).attr('href', newURL));
+    $(this).closest('.studentrow').children('.url').html(
+        $('<a>').text(newURL).attr('href', newURL).attr('target', '_blank')
+    );
     $($name).attr('disabled', true);
     $(this).removeClass("fa-floppy-o");
     $(this).addClass("fa-pencil");
