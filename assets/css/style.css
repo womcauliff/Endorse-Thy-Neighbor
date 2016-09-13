@@ -12,4 +12,14 @@
 
 .name[disabled] {
     border: none;
+    background-color: transparent;
+}
+
+.row {
+    padding: 0 10px;
+}
+
+.jumbotron {
+    color: white;
+    background-color: steelblue;
 }
