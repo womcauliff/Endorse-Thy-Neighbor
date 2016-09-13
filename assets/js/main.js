@@ -15,22 +15,30 @@ $(document).ready(function () {
 
 var personName = "";
 var linkedInURL = "";
-$("#formsubmit").on("click", function () {
+$("#formsubmit").on("click", function (e) {
+    e.preventDefault();
+
     personName = $("#person-name").val().trim();
     linkedInURL = $("#linkedin-url").val().trim();
+    linkedInValid = linkedInURL.slice(0, 28);
+    console.log(linkedInValid);
 
     if (personName === "" || linkedInURL === "") {
         console.log("empty form, return");
         return false;//prevent page refresh
-    }
+    } else if (linkedInValid !== "https://www.linkedin.com/in/") {
+        alert("Please enter a valid URL (https://www.linkedin.com/in/)")
+    } else {
 
-    database.ref().push({
-        personName: personName,
-        linkedInURL: linkedInURL,
-        dateAdded: firebase.database.ServerValue.TIMESTAMP
-    });
-    $("#person-name").val() = "";
-    $("#linkedin-url").val() = "";
+
+        database.ref().push({
+            personName: personName,
+            linkedInURL: linkedInURL,
+            dateAdded: firebase.database.ServerValue.TIMESTAMP
+        });
+        $("#person-name").val("");
+        $("#linkedin-url").val("");
+    }
     return false;//prevent page refresh
 });
 
